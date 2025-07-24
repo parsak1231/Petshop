@@ -1,0 +1,25 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158 25" width="180" height="40">
+    <style>
+        tspan {
+            white-space:pre
+        }
+        .a {
+            fill:none;
+            stroke:#fff;
+            stroke-linecap:round;
+            stroke-width:3
+        }
+        .b {
+            font-size: 37px;
+            fill: #ffffff;
+            font-family: "B nazanin", sans-serif;
+        }
+    </style>
+    <g transform="scale(1.1) translate(-25, -1)">
+    <path fill-rule="evenodd" class="a"
+          d="m146.7 6h-7.9c-3.8 0-6.8 2.9-6.8 6.4 0 3.5 3 6.4 6.8 6.4h12.1c2.6 0 4.6-1.9 4.6-4.3 0-2.4-2-4.3-4.6-4.3h-9.7c-1.4 0-2.4 1-2.4 2.2 0 1.2 1 2.3 2.4 2.3h9.9"/>
+    </g>
+    <text style="transform:matrix(.496,0,0,.5,-23.77,16)">
+        <tspan x="62.9" y="0" class="b">صفحه اصلی سایت</tspan>
+    </text>
+</svg>
