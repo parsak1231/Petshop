@@ -32,34 +32,34 @@
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">عنوان محصول:</label>
                                 <div class="col-lg-6">
-                                    <input class="form-control" type="text" name="title" id="title" required/>
+                                    <input class="form-control" type="text" name="title" id="title" />
                                 </div>
-                                @include('seller.products.error', ['field' => 'title'])
+                                @include('components.error', ['field' => 'title'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">
                                     قیمت محصول(تومان):
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" name="price" id="price" required/>
+                                    <input type="text" class="form-control" name="price" id="price" />
                                 </div>
-                                @include('seller.products.error', ['field' => 'price'])
+                                @include('components.error', ['field' => 'price'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">تعداد محصول:</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" name="quantity" id="quantity" required/>
+                                    <input type="text" class="form-control" name="quantity" id="quantity" />
                                 </div>
-                                @include('seller.products.error', ['field' => 'quantity'])
+                                @include('components.error', ['field' => 'quantity'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">
                                     بارگذاری تصویر:
                                 </label>
                                 <div class="col-lg-6">
-                                    <input name="image" id="image" type="file" class="form-control" required />
+                                    <input name="image" id="image" type="file" class="form-control" />
                                 </div>
-                                @include('seller.products.error', ['field' => 'image'])
+                                @include('components.error', ['field' => 'image'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">
@@ -68,7 +68,7 @@
                                 <div class="col-lg-6">
                                     <textarea class="form-control" name="description" rows="3"></textarea>
                                 </div>
-                                @include('seller.products.error', ['field' => 'description'])
+                                @include('components.error', ['field' => 'description'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">

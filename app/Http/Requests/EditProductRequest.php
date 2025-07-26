@@ -23,12 +23,12 @@ class EditProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => 'required|exists:categories,id',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|integer|min:1000',
-            'quantity' => 'required|integer|min:1',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'category'      => 'required|exists:categories,id',
+            'title'         => 'required|string|max:255',
+            'description'   => 'required|string',
+            'price'         => 'required|integer|min:1000',
+            'quantity'      => 'required|integer|min:1',
+            'image'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
@@ -46,7 +46,8 @@ class EditProductRequest extends FormRequest
             'price.integer'         => 'مقدار وارد شده برای قیمت محصول درست نیست',
             'image.mimes'           => 'فرمت تصویر وارد شده اشتباه است',
             'image.max'             => 'حداکثر حجم آپلود تصویر ۲ مگابایت می باشد',
-            'category.exists'       => 'چنین دسته بندی ای در سیستم تعریف نشده است'
+            'category.exists'       => 'چنین دسته بندی ای در سیستم تعریف نشده است',
+            'category.required'     => 'انتخاب کردن دسته بندی الزامی است'
         ];
     }
 }

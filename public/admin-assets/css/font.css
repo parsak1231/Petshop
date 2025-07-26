@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "Vazir";
+    src: url(../fonts/Vazir.ttf);
+}
+
+@font-face {
+    font-family: digikala;
+    src: url('../fonts/digikala.eot');
+    src: url('../fonts/digikala.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/digikala.woff2') format('woff2'),
+    url('../fonts/digikala.woff') format('woff'),
+    url('../fonts/digikala.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.woff?3q8ji6') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.woff?zgjhlz') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+

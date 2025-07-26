@@ -8,7 +8,7 @@
                         <span class="pc-micon">
                             <i class="ph ph-gauge"></i>
                         </span>
-                        <span class="pc-mtext">داشبورد</span>
+                        <span class="pc-mtext">پیشخوان</span>
                     </a>
                 </li>
 

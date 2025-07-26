@@ -13,6 +13,7 @@
     <link href="{{ asset('Css/Style.css') }}" rel="stylesheet"/>
     <link href="{{ asset('Css/owl.carousel.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('Css/owl.theme.min.css') }}" rel="stylesheet"/>
+    @stack('styles')
 
     <script src="{{ asset('Js/jquery.min.js') }}"></script>
     <script src="{{ asset('Js/bootstrap.min.js') }}"></script>
@@ -29,6 +30,7 @@
 
     <div class="clearfix"></div>
 
+    @yield('breadcrumb')
     @yield('content')
 
     @unless(in_array(Route::currentRouteName(), ['login.form', 'register.form']))

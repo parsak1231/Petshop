@@ -45,7 +45,7 @@
                         <a href="{{ route('site.home') }}">صفحه اصلی</a>
                     </li>
                     <li class="current-menu-item">
-                        <a href="shop.html">محصولات</a>
+                        <a href="{{ route('site.products.index') }}">محصولات</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -55,7 +55,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($categories as $category)
                                 <a class="dropdown-item"
-                                   href="{{ route('categories.show', $category->id) }}">
+                                   href="{{ route('site.categories.show', $category->id) }}">
                                     {{ $category->title }}
                                 </a>
                             @endforeach
@@ -91,12 +91,12 @@
                                 </a>
                             </li>
                             <li><a href="{{ route('site.home') }}">صفحه اصلی</a></li>
-                            <li><a href="shop.html">محصولات</a></li>
+                            <li><a href="{{ route('site.products.index') }}">محصولات</a></li>
                             <li class="dropdown-desktop">
                                 <a>دسته‌بندی‌ها</a>
                                 <div class="dropdown-menu-desktop">
                                     @foreach($categories as $category)
-                                        <a href="{{ route('categories.show', $category->id) }}">
+                                        <a href="{{ route('site.categories.show', $category->id) }}">
                                             {{ $category->title }}
                                         </a>
                                     @endforeach
@@ -109,7 +109,7 @@
 
                     <div class="m_login d-flex">
                         <div class="shoping-cart radius30">
-                            <a href="cart.html">
+                            <a href="{{ route('site.cart.index') }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path

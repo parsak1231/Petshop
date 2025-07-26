@@ -21,9 +21,15 @@ class Product extends BaseModel
         'quantity'
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function user()
@@ -31,8 +37,13 @@ class Product extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-    public function orderDetails()
+    public function details()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

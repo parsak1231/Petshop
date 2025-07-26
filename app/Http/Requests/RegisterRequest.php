@@ -2,12 +2,19 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 
 class RegisterRequest extends FormRequest
 {
+    private function getRoles()
+    {
+        return Role::whereNotIn('name', ['super_admin', 'admin'])
+            ->pluck('id')
+            ->toArray();
+    }
+
     public function authorize()
     {
         return true;
@@ -20,9 +27,9 @@ class RegisterRequest extends FormRequest
             'last_name'             => 'required|string|max:255',
             'phone'                 => 'required|string|unique:users,phone|regex:/^09\d{9}$/',
             'email'                 => 'required|regex:
-                                       /^[\w\.\-]+@[\w\-]+\.[a-zA-Z]{2,}$/|unique:users email',
+                                       /^[\w\.\-]+@[\w\-]+\.[a-zA-Z]{2,}$/|unique:users,email',
             'password'              => 'required|string|min:8|confirmed',
-            'role'                  => 'required|exists:roles,id'
+            'role'                  => ['required', Rule::in($this->getRoles())],
         ];
     }
 
@@ -42,7 +49,8 @@ class RegisterRequest extends FormRequest
             'password.required'       => 'وارد کردن پسورد الزامی است',
             'password.min'            => 'پسورد باید حداقل دارای ۸ کاراکتر باشد',
             'password.confirmed'      => 'پسورد اولیه با تکرار آن مطابقت ندارد',
-            'role.exists'             => 'چنین نقشی در سیستم تعریف نشده است'
+            'role.in'                 => 'نقش وارد شده معتبر نیست',
+            'role.required'           => 'انتخاب کردن نقش الزامی است'
         ];
     }
 }

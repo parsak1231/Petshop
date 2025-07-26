@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,22 +12,22 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable,
+        HasRoles;
 
     public $timestamps = true;
 
-    public function setCreatedAt($value): void
+    protected static function booted(): void
     {
-        if (!$this->exists) {
-            $this->attributes['created_at'] = $value;
-        }
-    }
+        static::creating(function ($model) {
+            $model->updated_at = null;
+        });
 
-    public function setUpdatedAt($value): void
-    {
-        if ($this->exists) {
-            $this->attributes['updated_at'] = $value;
-        }
+        static::updating(function ($model) {
+            $model->updated_at = now();
+        });
     }
 
     protected $fillable = [
@@ -35,6 +36,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
+        'last_seen_at'
     ];
 
     /**
@@ -43,7 +45,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -53,6 +56,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'password' => 'hashed',
+        'last_seen_at' => 'datetime'
     ];
 
     protected $unique = [
@@ -68,5 +72,16 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function getIsOnlineAttribute(): bool
+    {
+        return $this->last_seen_at && $this->last_seen_at
+            ->gt(Carbon::now()->subMinutes(5));
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -5,11 +5,7 @@
 @section('content')
     <section class="container-fluid text-lg-right text-center mt-4 p-3 mb-5">
         <div class="container">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <p>{{ $errors->first() }}</p>
-                </div>
-            @endif
+            @include('components.error-auth')
             <div class="row d-flex align-items-center pt-lg-5">
                 <div class="col-lg-7 pl-lg-5 text-center order-2 order-lg-1">
                     <div class="d-flex align-items-center mb-3">
@@ -65,9 +61,9 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <select id="role" name="role" class="custom-select-style">
-                                        @foreach($roles as $role_id => $role)
-                                            <option value="{{ $role_id }}">
-                                                {{ $role }}
+                                        @foreach($roles as $role)
+                                            <option value="{{ $role->id }}">
+                                                {{ $role->label }}
                                             </option>
                                         @endforeach
                                     </select>

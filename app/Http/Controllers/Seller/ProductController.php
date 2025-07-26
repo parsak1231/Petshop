@@ -16,6 +16,7 @@ use Intervention\Image\ImageManager;
 class ProductController extends Controller
 {
     protected array $methodsToConvert = ['store', 'update'];
+
     public function index(Request $request)
     {
         $query = $this->getSearchQuery($request);
@@ -40,12 +41,11 @@ class ProductController extends Controller
 
     public function store(AddProductRequest $request)
     {
-        //Auth::id()
         $imagePath = $this->getFilename($request);
         $data = $request->validated();
 
         $data['category_id'] = $data['category'];
-        $data['user_id'] = 1;
+        $data['user_id'] = Auth::id();
         $data['image'] = $imagePath;
         $data['price'] = intval($data['price']);
         $data['quantity'] = intval($data['quantity']);
@@ -58,12 +58,21 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        $this->authorizeProduct($product);
         $categories = Category::all();
         return view('seller.products.edit', compact('product', 'categories'));
     }
 
+    private function authorizeProduct(Product $product)
+    {
+        if ($product->user_id !== Auth::id()) {
+            abort(403, 'شما اجازه دسترسی به این محصول را ندارید.');
+        }
+    }
+
     public function update(EditProductRequest $request, Product $product)
     {
+        $this->authorizeProduct($product);
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
@@ -83,6 +92,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $this->authorizeProduct($product);
         $product->delete();
         return redirect()->back();
     }
@@ -109,6 +119,7 @@ class ProductController extends Controller
 
     public function changeStatus(Product $product)
     {
+        $this->authorizeProduct($product);
         $product->status = !($product->status);
         $product->save();
 
@@ -131,10 +142,9 @@ class ProductController extends Controller
 
     private function getSearchQuery(Request $request)
     {
-        // Auth::id()
         $search = $request->get('search');
         $query = Product::query()
-            ->where('user_id', 1)
+            ->where('user_id', '=', Auth::id())
             ->with('category');
 
         if ($search) {

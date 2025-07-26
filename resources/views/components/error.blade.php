@@ -1,5 +1,5 @@
 @if($errors->has($field))
-    <small class="form-text text-danger">
+    <small class="text-danger" style="color:red">
         {{ $errors->first($field) }}
     </small>
 @endif

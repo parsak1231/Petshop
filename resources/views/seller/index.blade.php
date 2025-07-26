@@ -57,7 +57,7 @@
                                     <label>مورد</label>
                                     <select name="entries" class="form-select form-select-sm d-inline-block w-auto mx-1" onchange="document.getElementById('entriesForm').submit()">
                                         @foreach([5, 10, 20, 25] as $count)
-                                            <option value="{{ $count }}" {{ (request('entries', 10) == $count) ? 'selected' : '' }}>
+                                            <option value="{{ $count }}" {{ $entries == $count ? 'selected' : '' }}>
                                                 {{ $count }}
                                             </option>
                                         @endforeach

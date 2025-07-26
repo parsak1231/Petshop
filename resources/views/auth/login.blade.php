@@ -2,15 +2,10 @@
 
 @section('title', 'صفحه لاگین')
 
-
 @section('content')
     <section class="container-fluid text-lg-right text-center mt-4 p-3 mb-5">
         <div class="container">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <p>{{ $errors->first() }}</p>
-                </div>
-            @endif
+            @include('components.error-auth')
             <div class="row d-flex align-items-center pt-lg-5">
                 <div class="col-lg-7 pl-lg-5 text-center order-2 order-lg-1">
                     <div class="d-flex align-items-center mb-3">

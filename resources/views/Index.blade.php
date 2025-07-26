@@ -9,7 +9,6 @@
 @section("content")
     <section class="container">
         <div class="row">
-
             <div class="col-lg-12 p-0 mb-3">
                 <div id="owl-mainslider" class="owl-carousel owl-theme text-center">
                     <div class="item">
@@ -22,7 +21,6 @@
 
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -78,12 +76,8 @@
 
                                         <span class="text-center">افزودن به سبد خرید</span>
                                     </div>
-
                                 </div>
-
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -130,8 +124,6 @@
                             </svg>
                         </a>
                     </div>
-
-
                 </div>
                 <div class="col-lg-5 d-flex align-items-center mt-5">
                     <img src="{{ asset('Img/about-us.png') }}" class="img-fluid wapp" alt="about_us"/>
@@ -139,7 +131,6 @@
             </div>
         </div>
     </section>
-
     <section class="bg-question pb-3">
         <div class="m-3 question-bg">
             <section class="container p-4 radius20 mt-5 mb-2">

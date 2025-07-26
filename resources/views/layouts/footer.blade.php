@@ -106,7 +106,7 @@
                         <a href="{{ route('site.about') }}">درباره ما</a>
                     </li>
                     <li>
-                        <a href="shop.html">محصولات</a>
+                        <a href="{{ route('site.products.index') }}">محصولات</a>
                     </li>
                     <li>
                         <a href="{{ route('site.contact') }}">تماس با ما</a>

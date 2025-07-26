@@ -24,11 +24,7 @@
                 <div class="margin-bottom-20">
                     <input type="text" name="title" placeholder="نام دسته بندی" class="text width-100"
                            value="{{ $category->title }}">
-                    @if($errors->any())
-                        <small class="text-danger" style="color:red">
-                            {{ $errors->first() }}
-                        </small>
-                    @endif
+                    @include('components.error', ['field' => 'title'])
                 </div>
 
                 <button type="submit" class="btn btn-netcopy_net width-100" style="padding: 12px 25px;">

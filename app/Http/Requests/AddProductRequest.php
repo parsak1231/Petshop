@@ -43,7 +43,8 @@ class AddProductRequest extends FormRequest
             'image.required'        => 'وارد کردن تصویر برای محصول الزامی است',
             'image.mimes'           => 'فرمت تصویر وارد شده اشتباه است',
             'image.max'             => 'حداکثر حجم آپلود تصویر ۲ مگابایت می باشد',
-            'category.exists'       => 'چنین دسته بندی ای در سیستم تعریف نشده است'
+            'category.exists'       => 'چنین دسته بندی ای در سیستم تعریف نشده است',
+            'category.required'     => 'انتخاب کردن دسته بندی الزامی است'
         ];
     }
 }

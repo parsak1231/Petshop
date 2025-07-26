@@ -19,6 +19,9 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        // Increase login session time
+//        config(['session.lifetime' => 43200]);
+
         if (!Auth::attempt($credentials)) {
             return back()->withErrors(['email' => 'ایمیل یا رمز اشتباه است']);
         }
@@ -36,7 +39,6 @@ class AuthController extends Controller
         $data['password'] = Hash::make($data['password']);
 
         $user = User::create($data);
-
         $user->assignRole(Role::find($data['role'])->name);
 
         return redirect()->route('login.form');
@@ -44,12 +46,7 @@ class AuthController extends Controller
 
     public function showRegister()
     {
-        $roles = Role::all()
-            ->pluck('name', 'id')
-            ->filter(function ($role) {
-                return $role !== "مدیر";
-            })
-            ->toArray();
+        $roles = Role::whereNotIn('name', ['super_admin', 'admin'])->get();
         return view('auth.register', compact('roles'));
     }
 
@@ -66,9 +63,9 @@ class AuthController extends Controller
         $role = $user->getRoleNames()->first();
 
         return match ($role) {
-            'مدیر' => redirect()->route('admin.home'),
-            'فروشنده' => redirect()->route('seller.products.index'),
-            default => redirect()->route('site.home'),
+            'admin', 'super_admin' => redirect()->route('admin.dashboard'),
+            'seller' => redirect()->route('seller.dashboard'),
+            default  => redirect()->route('site.home'),
         };
     }
     public function showLogoutError(): void

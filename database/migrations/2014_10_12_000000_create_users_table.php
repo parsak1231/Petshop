@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone', 11)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::enableForeignKeyConstraints();
