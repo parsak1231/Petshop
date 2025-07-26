@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = $this->getSearchQuery($request);
-        $entries = $this->getEntriesData($request);
+        $entries = getEntriesData($request, [5,10,25,50,75], 25);
         $sortData = $this->getSortingData($request);
 
         $products = $query
@@ -129,18 +129,13 @@ class ProductController extends Controller
         ];
     }
 
-
-    private function getEntriesData(Request $request)
-    {
-        $entries = $request->get('entries', 25);
-        return in_array($entries, [5, 10, 25, 50, 75]) ? $entries : 25;
-    }
-
     private function getSearchQuery(Request $request)
     {
         // Auth::id()
         $search = $request->get('search');
-        $query = Product::where('user_id', 1)->with('category');
+        $query = Product::query()
+            ->where('user_id', 1)
+            ->with('category');
 
         if ($search) {
             $query->where('title', 'like', "%$search%");

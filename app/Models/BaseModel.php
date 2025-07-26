@@ -11,7 +11,6 @@ class BaseModel extends Model
     protected static function booted(): void
     {
         static::creating(function ($model) {
-            $model->created_at = now();
             $model->updated_at = null;
         });
 

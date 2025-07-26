@@ -36,7 +36,7 @@
                                     <input class="form-control" type="text" name="title" id="title"
                                            value="{{ $product->title }}" required/>
                                 </div>
-                                @include('components.error', ['field' => 'title'])
+                                @include('seller.products.error', ['field' => 'title'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">
@@ -46,7 +46,7 @@
                                     <input type="text" class="form-control" name="price" id="price"
                                            value="{{ $product->price }}" required/>
                                 </div>
-                                @include('components.error', ['field' => 'price'])
+                                @include('seller.products.error', ['field' => 'price'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">تعداد محصول:</label>
@@ -54,7 +54,7 @@
                                     <input type="text" class="form-control" name="quantity" id="quantity"
                                            value="{{ $product->quantity }}" required/>
                                 </div>
-                                @include('components.error', ['field' => 'quantity'])
+                                @include('seller.products.error', ['field' => 'quantity'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">
@@ -63,7 +63,7 @@
                                 <div class="col-lg-6">
                                     <input name="image" id="image" type="file" class="form-control"/>
                                 </div>
-                                @include('components.error', ['field' => 'image'])
+                                @include('seller.products.error', ['field' => 'image'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">
@@ -81,7 +81,7 @@
                                 <div class="col-lg-6">
                                     <textarea class="form-control" name="description" rows="3">{{ $product->description }}</textarea>
                                 </div>
-                                @include('components.error', ['field' => 'description'])
+                                @include('seller.products.error', ['field' => 'description'])
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label text-lg-end">
@@ -102,7 +102,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                @include('components.error', ['field' => 'category'])
+                                @include('seller.products.error', ['field' => 'category'])
                             </div>
                             <div class="row mb-0">
                                 <div class="col-lg-4 col-form-label"></div>

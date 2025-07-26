@@ -13,6 +13,10 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->count(100)->create();
+        for ($i = 0; $i < 20; $i++) {
+            Product::factory()->create([
+                'created_at' => now()->addMinutes($i)
+            ]);
+        }
     }
 }

@@ -165,8 +165,8 @@
                                     <td title="{{ $product->description }}">
                                         {{ \Illuminate\Support\Str::limit($product->description, 20) }}
                                     </td>
-                                    <td>{{ $product->price }}</td>
-                                    <td>{{ $product->quantity }}</td>
+                                    <td>{{ number_format($product->price) }}</td>
+                                    <td>{{ number_format($product->quantity) }}</td>
                                     <td>
                                         {{ \Morilog\Jalali\Jalalian::fromDateTime($product->created_at)->format('%Y/%m/%d') }}
                                     </td>
