@@ -16,14 +16,11 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-
         $credentials = $request->only('email', 'password');
 
-        // Increase login session time
-//        config(['session.lifetime' => 43200]);
-
         if (!Auth::attempt($credentials)) {
-            return back()->withErrors(['email' => 'ایمیل یا رمز اشتباه است']);
+            return redirect()
+                ->back()->withErrors('رمز عبور اشتباه است');
         }
 
         $request->session()->regenerate();

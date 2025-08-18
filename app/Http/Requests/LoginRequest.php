@@ -14,7 +14,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'    => 'required|regex:/^[\w\.\-]+@[\w\-]+\.[a-zA-Z]{2,}$/',
+            'email'    => 'required|regex:/^[\w\.\-]+@[\w\-]+\.[a-zA-Z]{2,}$/|exists:users,email',
             'password' => 'required|string|min:8'
         ];
     }
@@ -23,8 +23,9 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required'    => 'وارد کردن ایمیل الزامی است',
-            'password.required' => 'وارد کردن پسورد الزامی است',
+            'email.exists'      => 'این ایمیل در سیستم ثبت نشده است',
             'email.regex'       => 'فرمت ایمیل وارد شده اشتباه است',
+            'password.required' => 'وارد کردن پسورد الزامی است',
             'password.min'      => 'پسورد باید حداقل دارای ۸ کاراکتر باشد'
         ];
     }

@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 
 // Customer Routes
 Route::prefix('/')->name('site.')->group(function () {
-    Route::view('/', 'Index')
+    Route::get('/', [DashboardController::class, 'home'])
         ->name('home');
 
     Route::view('about', 'about-us')
@@ -34,15 +34,29 @@ Route::prefix('/')->name('site.')->group(function () {
     Route::get('/products/{product_id}', [BuyerProductController::class, 'show'])
         ->name('products.show');
 
-    Route::get('/cart', [OrderController::class, 'index'])
+    Route::get('/cart', [OrderController::class, 'show'])
         ->name('cart.index')
+        ->middleware(['auth', 'role:customer']);
+
+    Route::post('/cart/add/{product}', [OrderController::class, 'add'])
+        ->name('cart.add')
+        ->middleware(['auth', 'role:customer']);
+
+    Route::patch('/cart/update/{detail}', [OrderController::class, 'update'])
+        ->name('cart.update')
+        ->middleware(['auth', 'role:customer']);
+
+    Route::delete('/cart/remove/{detail}', [OrderController::class, 'remove'])
+        ->name('cart.remove')
+        ->middleware(['auth', 'role:customer']);
+
+    Route::post('/cart/checkout', [OrderController::class, 'checkout'])
+        ->name('cart.checkout')
         ->middleware(['auth', 'role:customer']);
 
     Route::post('/comments', CustomerCommentController::class)
         ->name('comments.store')
         ->middleware(['auth', 'role:customer']);
-
-
 });
 
 // Seller Routes
@@ -90,7 +104,7 @@ Route::get('/logout', [AuthController::class, 'showLogoutError']);
 
 // Admin Routes
 Route::prefix('admin')
-//    ->middleware(['auth', 'role:admin|super_admin'])
+    ->middleware(['auth', 'role:admin|super_admin'])
     ->name('admin.')
     ->group(function() {
         Route::get('/', [DashboardController::class, 'adminDashboard'])

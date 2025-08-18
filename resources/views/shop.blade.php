@@ -20,6 +20,7 @@
 
 @section('content')
     <section class="container mb-4">
+        @include('components.error-custom')
         @if($products->count())
             <div class="row">
                 <div class="col-xl-9 pt-3 order-xl-1 pl-4 order-0 mb-3">
@@ -49,8 +50,12 @@
                                         <span class="color-orange YekanBakhFaNum-Regular fa14">تومان</span>
                                         <div class="d-flex justify-content-between align-items-center">
                                             @if($product->quantity > 0)
-                                                <div class="d-flex">
-                                                    <div class="add-to-cart hoverable outlined">
+                                                <form action="{{ route('site.cart.add', $product->id) }}" method="POST"
+                                                      class="d-flex">
+                                                    @csrf
+                                                    <button type="submit"
+                                                            class="add-to-cart hoverable outlined d-flex align-items-center"
+                                                            style="border: none; outline: none">
                                                         <svg width="21" height="22" viewBox="0 0 21 22" fill="none"
                                                              xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -66,9 +71,9 @@
                                                                 d="M19.2601 7.5H3.92005C3.50005 7.5 3.16005 7.82 3.12005 8.23L2.76005 12.58C2.62005 14.29 3.96005 15.75 5.67005 15.75H16.7901C18.2901 15.75 19.6101 14.52 19.7201 13.02L20.0501 8.35C20.0901 7.89 19.7301 7.5 19.2601 7.5Z"
                                                                 fill="#FFAA00"/>
                                                         </svg>
-                                                        <span class="text-center">افزودن به سبد خرید</span>
-                                                    </div>
-                                                </div>
+                                                        <span class="text-center ml-2">افزودن به سبد خرید</span>
+                                                    </button>
+                                                </form>
                                             @else
                                                 <div class="d-flex">
                                                     <div class="add-to-cart hoverable unavailable">

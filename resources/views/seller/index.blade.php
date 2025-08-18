@@ -10,41 +10,48 @@
                     <div class="col-md-6 col-xl-3">
                         <div class="card bg-grd-primary order-card">
                             <div class="card-body">
-                                <h6 class="text-white">Orders Received</h6>
-                                <h2 class="text-end text-white"><i
-                                        class="feather icon-shopping-cart float-start"></i><span>486</span></h2>
-                                <p class="m-b-0">Completed Orders<span class="float-end">351</span></p>
+                                <h6 class="text-white">تعداد محصولات با موجودی کم:</h6>
+                                <h2 class="text-end text-white">
+                                    <span>{{ number_format($lowStockProductCount) }}</span>
+                                </h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <div class="card bg-grd-success order-card">
                             <div class="card-body">
-                                <h6 class="text-white">Total Sales</h6>
-                                <h2 class="text-end text-white"><i
-                                        class="feather icon-tag float-start"></i><span>1641</span></h2>
-                                <p class="m-b-0">This Month<span class="float-end">213</span></p>
+                                <h6 class="text-white">میانگین فروش محصولات:</h6>
+                                <h2 class="text-end text-white">
+                                    <span>{{ number_format($averageSale) }} تومان</span>
+                                </h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <div class="card bg-grd-warning order-card">
                             <div class="card-body">
-                                <h6 class="text-white">Revenue</h6>
-                                <h2 class="text-end text-white"><i class="feather icon-repeat float-start"></i><span>$42,562</span>
+                                <h6 class="text-white">درآمد امروز:</h6>
+                                <h2 class="text-end text-white">
+                                    <span>{{ number_format($todayRevenue) }} تومان</span>
                                 </h2>
-                                <p class="m-b-0">This Month<span class="float-end">$5,032</span></p>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-6 col-xl-3">
                         <div class="card bg-grd-danger order-card">
                             <div class="card-body">
-                                <h6 class="text-white">Total Profit</h6>
-                                <h2 class="text-end text-white"><i class="feather icon-award float-start"></i><span>$9,562</span>
+                                <h6 class="text-white">مشتری با بیشترین مبلغ خرید:</h6>
+                                @if($bestCustomer)
+                                <h2 class="text-end text-white">
+                                    <span>
+                                        {{ $bestCustomer->first_name }} {{ $bestCustomer->last_name }}
+                                    </span>
                                 </h2>
-                                <p class="m-b-0">This Month<span class="float-end">$542</span></p>
+                                @else
+                                    <h2 class="text-end text-white">
+                                        وجود ندارد
+                                    </h2>
+                                @endif
                             </div>
                         </div>
                     </div>

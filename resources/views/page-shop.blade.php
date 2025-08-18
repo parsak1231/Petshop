@@ -45,6 +45,7 @@
 
 @section('content')
     <section class="container mb-4">
+        @include('components.error-custom')
         <div class="row">
             <div class="col-xl-9 order-xl-0 order-0">
                 <div class="card m-3 p-4">
@@ -59,6 +60,7 @@
                                 <h4 class="box-title">{{ $product->title }}</h4>
                                 <hr>
                                 <ul class="list-unstyled">
+                                    @if($product->comments->whereNotNull('rating')->count() > 0)
                                     <div class="rating">
                                         <div class="stars d-flex align-items-center">
                                             <span class="color-gray">امتیاز:</span>
@@ -71,10 +73,11 @@
                                                     stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                             <span class="review-no mr-2">
-                                                {{ $product->comments->avg('rating') }}
+                                                {{ round($product->comments->avg('rating'), 1) }}
                                             </span>
                                         </div>
                                     </div>
+                                    @endif
                                     <li class="color-gray">
                                         دسته بندی:
                                         <span class="color-dark">{{ $product->category->title }}</span>
@@ -94,11 +97,15 @@
                                 </ul>
                                 <div class="d-flex align-items-center justify-content-between my-4">
                                     @if($product->quantity > 0)
-                                        <button class="btn btn-lightorng btn-rounded mr-1" data-toggle="tooltip"
-                                                title=""
-                                                data-original-title="Add to cart">
-                                            افزودن به سبد خرید
-                                        </button>
+                                        <form action="{{ route('site.cart.add', $product->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit"
+                                                    class="btn btn-lightorng btn-rounded mr-1"
+                                                    data-toggle="tooltip"
+                                                    title="افزودن به سبد خرید">
+                                                افزودن به سبد خرید
+                                            </button>
+                                        </form>
                                         <h3 class="color-orange YekanBakhFaNum-Bold fa18">
                                             {{ number_format($product->price) }}
                                             <span class="YekanBakhFaNum-Regular fa14">تومان</span>
@@ -239,17 +246,13 @@
                                                     <input type="radio" name="rating" id="star1" value="1">
                                                     <label for="star1">★</label>
                                                 </div>
-                                                @include('components.error', ['field' => 'rating'])
 
                                                 <textarea name="content" class="form-control area mb-2" cols="60"
                                                           rows="9"
-                                                          placeholder="دیدگاه"
+                                                          placeholder="نظر"
                                                           style="height: 150px!important"></textarea>
 
-                                                @include('components.error', ['field' => 'content'])
-
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                @include('components.error', ['field' => 'product_id'])
 
                                                 <button type="submit"
                                                         class="btn btn-lightorng d-flex align-items-center">
@@ -263,7 +266,7 @@
                                                             d="M6.10636 30.3335C5.7597 30.3335 5.42636 30.2402 5.11969 30.0402C4.51969 29.6535 4.1997 28.9868 4.2797 28.2802L4.54637 26.2268C2.74637 24.7601 1.67969 22.5868 1.67969 20.3068C1.67969 17.7068 3.0397 15.2801 5.3197 13.8268C6.69304 12.9334 8.31969 12.4535 10.013 12.4535C14.613 12.4535 18.3464 15.9734 18.3464 20.3068C18.3464 22.0668 17.7064 23.8001 16.533 25.1735C15.0264 27.0001 12.773 28.0668 10.293 28.1468L7.03969 30.0801C6.74636 30.2535 6.42636 30.3335 6.10636 30.3335ZM9.99969 14.4535C8.69303 14.4535 7.43969 14.8135 6.38635 15.5068C4.67969 16.6001 3.66636 18.3868 3.66636 20.3068C3.66636 22.1601 4.57303 23.8535 6.17303 24.9468C6.4797 25.1602 6.63969 25.5201 6.59969 25.8934L6.30636 28.1735L9.49302 26.2802C9.65302 26.1868 9.82636 26.1334 9.99969 26.1334C11.9597 26.1334 13.813 25.2935 14.9864 23.8668C15.8664 22.8268 16.333 21.6001 16.333 20.2934C16.333 17.0801 13.493 14.4535 9.99969 14.4535Z"
                                                             fill="white"/>
                                                     </svg>
-                                                    ثبت دیدگاه
+                                                    ثبت نظر
                                                 </button>
                                             </div>
                                         </form>

@@ -1,8 +1,6 @@
 <footer class="footer-parent pt-4 pb-4">
     <div class="container footer-wrap">
-
         <div class="row py-3">
-
             <div class="col-lg-5 col-md-6 col-sm-12 px-md-3 mb-4 pl-lg-5">
                 <div class="d-flex align-items-center mb-4">
                     <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,15 +66,10 @@
                                       stroke="#FFB500" stroke-width="1.5" stroke-linecap="round"
                                       stroke-linejoin="round"/>
                             </svg>
-
-
                             <p class="mr-2">info @ rtl-theme.com</p>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
 
             <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
@@ -102,6 +95,9 @@
                     <h2 class="mr-3 color-white">پیوندها</h2>
                 </div>
                 <ul class="footer-category text-center">
+                    <li>
+                        <a href="{{ route('site.home') }}">صفحه اصلی</a>
+                    </li>
                     <li>
                         <a href="{{ route('site.about') }}">درباره ما</a>
                     </li>
@@ -202,7 +198,7 @@
             </div>
 
             <div class="text-left logo-footer">
-                <img src="{{ asset('Img/footer-logo.svg') }}" alt="">
+                <img src="{{ asset('Img/footer-logo.svg') }}" alt="تصویر فوتر">
             </div>
         </div>
     </div>
