@@ -46,6 +46,11 @@
 @section('content')
     <section class="container mb-4">
         @include('components.error-custom')
+        @if(session('success_comment'))
+            <div class="alert alert-success">
+                {{ session('success_comment') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-xl-9 order-xl-0 order-0">
                 <div class="card m-3 p-4">

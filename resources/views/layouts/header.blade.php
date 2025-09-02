@@ -37,17 +37,16 @@
                         @endforeach
                     </div>
                 </li>
-                <li class="current-menu-item">
-                    <a href="{{ route('register.form') }}">ثبت نام</a>
-                </li>
-                <li class="current-menu-item">
-                    <a href="{{ route('login.form') }}">ورود</a>
-                </li>
+                @guest
+                    <li class="current-menu-item">
+                        <a href="{{ route('register.form') }}">ثبت نام</a>
+                    </li>
+                    <li class="current-menu-item">
+                        <a href="{{ route('login.form') }}">ورود</a>
+                    </li>
+                @endguest
                 <li class="current-menu-item">
                     <a href="{{ route('site.about') }}">درباره ما</a>
-                </li>
-                <li class="current-menu-item">
-                    <a href="{{ route('site.contact') }}">تماس با ما</a>
                 </li>
             </ul>
         </div>
@@ -58,7 +57,6 @@
     <div class="header_container">
         <div class="menu_wrapper menu_sticky header-btop">
             <div class="container p_relative h86">
-
                 <div id="navigation" class="of-drop-down of-main-menu" role="navigation">
                     <ul class="menu">
                         <li>
@@ -66,9 +64,9 @@
                                 <img src="{{ asset("Img/logo.svg") }}" alt="logo"/>
                             </a>
                         </li>
-                        <li><a href="{{ route('site.home') }}">صفحه اصلی</a></li>
-                        <li><a href="{{ route('site.products.index') }}">محصولات</a></li>
-                        <li class="dropdown-desktop">
+                        <li class="{{ auth()->check() ? 'pr-3' : 'pr-2' }}"><a href="{{ route('site.home') }}">صفحه اصلی</a></li>
+                        <li class="{{ auth()->check() ? 'pr-3' : 'pr-2' }}"><a href="{{ route('site.products.index') }}">محصولات</a></li>
+                        <li class="dropdown-desktop {{ auth()->check() ? 'pr-3' : 'pr-2' }}">
                             <a>دسته‌بندی‌ها</a>
                             <div class="dropdown-menu-desktop">
                                 @foreach($categories as $category)
@@ -78,8 +76,8 @@
                                 @endforeach
                             </div>
                         </li>
-                        <li><a href="{{ route('site.about') }}">درباره ما</a></li>
-                        <li><a href="{{ route('site.contact') }}">تماس با ما</a></li>
+                        <li class="{{ auth()->check() ? 'pr-3' : 'pr-2' }}"><a href="{{ route('site.gallery') }}">گالری</a></li>
+                        <li class="{{ auth()->check() ? 'pr-3' : 'pr-2' }}"><a href="{{ route('site.about') }}">درباره ما</a></li>
                     </ul>
                 </div>
 
@@ -105,6 +103,25 @@
                             </svg>
                         </a>
                     </div>
+                    @auth
+                        <div class="hide-on-desktop login radius55 mr-3" title="خروج">
+                            <form action="{{ route('logout') }}" method="POST" class="mobile-logout-form">
+                                @csrf
+                                <button type="submit">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 17L21 12L16 7" stroke="white" stroke-width="1.5"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M21 12H9" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                              stroke-linejoin="round"/>
+                                        <path d="M12 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H12"
+                                              stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                              stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    @endauth
                     <div class="login px-4 py-2 radius55 d-flex align-items-center hide-on-mobile">
                         @guest
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

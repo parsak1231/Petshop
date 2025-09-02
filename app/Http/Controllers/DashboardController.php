@@ -48,8 +48,9 @@ class DashboardController extends Controller
         $bestCustomer = User::withSum(['orders' => function ($query) {
             $query->where('status', 'paid');
         }], 'total_price')
-            ->having('orders_sum_total_price', '>', 0)
             ->orderByDesc('orders_sum_total_price')
+            ->get()
+            ->filter(fn($user) => $user->orders_sum_total_price > 0)
             ->first();
 
         return [
@@ -99,7 +100,7 @@ class DashboardController extends Controller
 
     private function getHomeData()
     {
-        $products = Product::latest()->take(4)->get();
+        $products = Product::active()->latest()->take(4)->get();
         $topComments = Comment::with('user')
             ->whereBetween('rating', [4, 5])
             ->take(5)

@@ -42,6 +42,9 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if ($category->products()->count() > 0) {
+            return redirect()->back()->with('error', 'این دسته‌بندی دارای محصول است و قابل حذف نیست.');
+        }
         $category->delete();
         return redirect()->back();
     }

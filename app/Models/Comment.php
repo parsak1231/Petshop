@@ -13,6 +13,7 @@ class Comment extends BaseModel
         'user_id',
         'content',
         'rating',
+        'status'
     ];
 
     public function product()

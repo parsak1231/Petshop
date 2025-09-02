@@ -98,6 +98,20 @@
                                 <button type="submit" class="item-delete mlg-15 cursor-pointer" style="background: none"
                                         title="حذف"></button>
                             </form>
+                            <form action="{{ route('admin.comments.approve', $comment->id) }}" method="POST"
+                                  style="display:inline-block">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="item-confirm mlg-15 cursor-pointer" style="background: none"
+                                        title="تایید"></button>
+                            </form>
+                            <form action="{{ route('admin.comments.reject', $comment->id) }}" method="POST"
+                                  style="display:inline-block">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="item-reject mlg-15 cursor-pointer" style="background: none"
+                                        title="رد"></button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -113,4 +127,9 @@
             return confirm("آیا از حذف این مورد اطمینان دارید؟");
         }
     </script>
+    @if(session('status'))
+        <script>
+            alert("{{ session('status') }}")
+        </script>
+    @endif
 @endpush

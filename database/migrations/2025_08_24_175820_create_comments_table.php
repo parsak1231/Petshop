@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('content');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->tinyInteger('rating')->nullable();
             $table->timestamps();
             $table->softDeletes();

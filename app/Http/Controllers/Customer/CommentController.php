@@ -18,6 +18,6 @@ class CommentController extends Controller
 
         Comment::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('success_comment', 'نظر شما با موفقیت ثبت شد. پس از تایید نظر شما نشان داده خواهد شد');
     }
 }

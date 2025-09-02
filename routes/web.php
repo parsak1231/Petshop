@@ -22,8 +22,8 @@ Route::prefix('/')->name('site.')->group(function () {
     Route::view('about', 'about-us')
         ->name('about');
 
-    Route::view('contact', 'contact-us')
-        ->name('contact');
+    Route::view('gallery', 'gallery')
+        ->name('gallery');
 
     Route::get('products/categories/{cat_id}', CustomerCategoryController::class)
         ->name('categories.show');
@@ -182,4 +182,10 @@ Route::prefix('admin')
 
         Route::delete('/comments/{comment}', [AdminCommentController::class, 'destroy'])
             ->name('comments.destroy');
+
+        Route::patch('comments/{comment}/approve', [AdminCommentController::class, 'approve'])
+            ->name('comments.approve');
+
+        Route::patch('comments/{comment}/reject', [AdminCommentController::class, 'reject'])
+            ->name('comments.reject');
     });

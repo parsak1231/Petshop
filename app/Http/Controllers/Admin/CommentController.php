@@ -23,4 +23,20 @@ class CommentController extends Controller
         $comment->delete();
         return redirect()->back();
     }
+
+    public function approve(Comment $comment)
+    {
+        if ($comment->status !== 'approved') {
+            $comment->update(['status' => 'approved']);
+        }
+        return redirect()->back()->with('status', 'کامنت با موفقیت تأیید شد.');
+    }
+
+    public function reject(Comment $comment)
+    {
+        if ($comment->status !== 'rejected') {
+            $comment->update(['status' => 'rejected']);
+        }
+        return redirect()->back()->with('status', 'کامنت با موفقیت رد شد.');
+    }
 }

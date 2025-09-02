@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $product = Product::active()
             ->with(['comments' => function($query) {
-                $query->latest();
+                $query->where('status', 'approved')->latest();
             }, 'comments.user'])
             ->where('id', $product_id)
             ->firstOrFail();

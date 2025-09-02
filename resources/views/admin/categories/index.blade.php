@@ -56,4 +56,9 @@
 
 @push('scripts')
     <script src="{{ asset('admin-assets/js/tagsInput.js') }}"></script>
+    @if(session('error'))
+        <script>
+            alert("{{ session('error') }}");
+        </script>
+    @endif
 @endpush

@@ -18024,6 +18024,12 @@ a.text-dark:focus, a.text-dark:hover {
     }
 }
 
+@media (min-width: 998px) {
+    .hide-on-desktop {
+        display: none !important;
+    }
+}
+
 .dropdown {
      position: relative;
      display: inline-block;
@@ -18104,4 +18110,17 @@ a.text-dark:focus, a.text-dark:hover {
 
 .dropdown-desktop:hover .dropdown-menu-desktop {
     display: block;
+}
+
+.mobile-logout-form {
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-logout-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
 }
