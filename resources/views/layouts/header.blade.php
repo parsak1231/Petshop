@@ -46,6 +46,9 @@
                     </li>
                 @endguest
                 <li class="current-menu-item">
+                    <a href="{{ route('site.gallery') }}">گالری</a>
+                </li>
+                <li class="current-menu-item">
                     <a href="{{ route('site.about') }}">درباره ما</a>
                 </li>
             </ul>

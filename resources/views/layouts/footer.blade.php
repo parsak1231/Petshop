@@ -143,7 +143,7 @@
         </div>
         <div class="d-flex align-items-center justify-content-between copyright py-3 px-5 radius30">
             <div class="">
-                <p class="text-center fa14">کلیه حقوق مادی و معنوی این قالب برای توسعه دهندگان آن محفوظ بوده و هرگونه
+                <p class="text-center fa14">کلیه حقوق مادی و معنوی این سایت برای توسعه دهندگان آن محفوظ بوده و هرگونه
                     کپی برداری، پیگرد قانونی دارد.</p>
             </div>
             <div class="text-left logo-footer">
