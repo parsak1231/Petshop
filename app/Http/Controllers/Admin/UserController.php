@@ -18,9 +18,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $entries = getEntriesData($request, [5, 10, 20, 25, 50], 20);
-
+        
         $query = $this->getSearchData($request);
-        $users = $query->paginate($entries)->withQueryString();
+        $users = $query->orderBy('id')
+            ->paginate($entries)
+            ->withQueryString();
 
         return view('admin.users.index', compact('entries', 'users'));
     }

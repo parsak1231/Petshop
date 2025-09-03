@@ -72,12 +72,15 @@ class DashboardController extends Controller
     {
         $entries = getEntriesData($request, [5, 10, 20, 25], 10);
         $onlineUsers = User::where('last_seen_at', '>=', now()->subMinutes(5))
+            ->orderBy('last_seen_at')
             ->paginate($entries);
 
         $totalUsers = User::count();
         $mostUsedCategory = Category::withCount('products')
+            ->hasDifferentCounts()
             ->orderBy('products_count', 'desc')
             ->first();
+
         $totalRoles = Role::count();
         $lastDeletedProduct = Product::onlyTrashed()
             ->orderBy('deleted_at', 'desc')

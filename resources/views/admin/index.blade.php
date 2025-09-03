@@ -28,7 +28,13 @@
             </div>
             <div class="col-3 padding-20 border-radius-3 bg-white margin-left-10 margin-bottom-10">
                 <p>پر استفاده ترین دسته بندی:</p>
-                <p>{{ $mostUsedCategory?->title }}</p>
+                @if($mostUsedCategory)
+                    <p>{{ $mostUsedCategory->title }}</p>
+                @else
+                    <p style="color:red">
+                        در حال حاضر تعداد محصولات هر دسته بندی مورد استفاده یکسان است
+                    </p>
+                @endif
             </div>
             <div class="col-3 padding-20 border-radius-3 bg-white margin-left-10 margin-bottom-10">
                 <p>تعداد نقش های تعریف شده: {{ $totalRoles }} عدد</p>

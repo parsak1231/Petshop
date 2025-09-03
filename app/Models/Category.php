@@ -16,4 +16,25 @@ class Category extends BaseModel
     {
         return $this->hasMany(Product::class);
     }
+
+    public function scopeHasDifferentCounts($query)
+    {
+        $categories = $query->withCount('products')->get();
+
+        $categoriesWithProducts = $categories
+            ->filter(fn($cat) => $cat->products_count > 0);
+
+        if ($categoriesWithProducts->isEmpty()) {
+            return $query->whereRaw('1 = 0');
+        }
+
+        $max = $categoriesWithProducts->max('products_count');
+        $min = $categoriesWithProducts->min('products_count');
+
+        if ($max === $min) {
+            return $query->whereRaw('1 = 0');
+        }
+
+        return $query;
+    }
 }
